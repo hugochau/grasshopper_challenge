@@ -30,7 +30,7 @@ cd ./docker
 docker-compose build
 ```
 
-Please also move test data `l3_data_v3` to `./data`
+Please also move test data `l3_data_v3.csv` to `./data`
 
 ## Structure
 
@@ -117,13 +117,14 @@ For the sake of simplicity and scalability, the code follows an object-oriented 
 `src/main.py` provides the main function.
 
 From a high level perspective, the main function is implemented as follows:
+  - parse args
   - define spark session
   - load data into spark DataFrame
   - replicate stream behavior
   - update bbo
   - push l1 data to csv/table
 
-Logs are saved under `/tmp`. A logging decorator is defined in `util.log_item` and can be used throughout the code.
+Logs are saved under `./data/log`. A logging decorator is defined in `util.log_item` and can be used throughout the code.
 
 
 ## Improvements
@@ -135,7 +136,7 @@ Further improvements to the code, listed below:
 - Streaming module is a POC. Due to time constraint, target folder only contains one CSV file. Besides, the input data comes in order. Suggested improvements with extra time:
   - support multiple files
   - add queueing system
-  - deal with unordered
+  - deal with unordered events (order is guaranted at shard level but not accross the entire system)
 
 - Deal with corrupted records. Currently stored in separate column when loading CSV.
 
