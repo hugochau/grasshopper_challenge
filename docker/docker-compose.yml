@@ -1,0 +1,22 @@
+# docker-compose.yml
+
+version: '3.4'
+
+services:
+    postgres:
+        container_name: "gh_postgres"
+        build:
+            context: ./postgres
+            dockerfile: Dockerfile
+        ports:
+            - "5432:5432"
+
+    python:
+        container_name: "gh_python"
+        build:
+            context: ./python
+            dockerfile: Dockerfile
+        environment:
+            - PGHOST=${PGHOST}
+        volumes:
+            - ../:/home/grasshopper/workspace

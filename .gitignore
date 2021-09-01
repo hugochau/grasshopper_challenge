@@ -1,0 +1,15 @@
+.DS_Store
+.vscode
+**/__pycache__
+**/__MACOSX
+
+**/*.jar
+**/*.csv
+**/*.xlsx
+
+data/log/log*
+data/**json
+data/**zip
+
+.bash_history
+.python_history
